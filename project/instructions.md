@@ -2,7 +2,7 @@
 
 ## Deadline
 
-<!-- Place the date here. -->
+31/Jul/2022
 
 ## Opportunities
 
@@ -37,8 +37,8 @@ Configure and apply CI/CD (including deployment) pipeline using any platforms (G
 
 1. Configure with Vagrant: 1 VM running on any Linux distribution 
 2. Provision the VM with Ansible, which includes installing and running:
-  - language runtime
-  - database
+  - the language runtime (python, javascript, nodejs etc.)
+  - a database (e.g. redis)
   - your application (use [sync folders](https://www.vagrantup.com/docs/synced-folders))
   - health check of your application
 
@@ -108,7 +108,7 @@ Write a sort of report in the `README.md` file which includes the following:
 
 6. Other additional info that you want to include...
 
-> **Note!** Use the correct Markdown syntax to keep your `README.md` file looking good.
+> **Note!** Use the correct [Markdown syntax](https://www.markdownguide.org/cheat-sheet/) to keep your `README.md` file looking good.
 
 ## Structure
 
@@ -154,11 +154,11 @@ List of bonus tasks proposed:
 
 ## How to send a project for evaluation?
 
-1. **ATTENTION!** Make sure your repository is **PRIVATE** and **you have sent an invitation** to teacher's GitHub account - https://github.com/sergkudinov. Otherwise, **if it isn't PRIVATE the final grade will be reduced to 0**.
+1. **ATTENTION!** Make sure your repository is **PRIVATE** and **you have sent an invitation** to teacher's GitHub account - https://github.com/DanielJohnHarty. Otherwise, **if it isn't PRIVATE the final grade will be reduced to 0**.
 
-2. After you have sent the invitation, send an email to [sergei@adaltas.com](mailto:sergei@adaltas.com) containing the following:
+2. After you have sent the invitation, send an email to [daniel@adaltas.com](mailto:daniel@adaltas.com) containing the following:
 
-  - **Subject format:** "DSTI - DevOps project - \<LASTNAME Firstname\> - \<Group number (ex: SI03)\>"
+  - **Subject format:** "DSTI - DevOps project - \<LASTNAME Firstname\> - \<Group number (ex: A21)\>"
   - **Message:**
     - **The link to the repository** on GitHub/GitLab
     - List of authors and **the group number**
