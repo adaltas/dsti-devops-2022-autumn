@@ -16,15 +16,20 @@ Container orchestration with Kubernetes
 
 [Install Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) following the instructions depending on your OS.
 
-Start Minikube with:
+- Ensure Hyper-V is enabled on Windows with Powershell command `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All` (right click powershell icon and select 'run as administrator' from the launch options)
+- Ensure Docker is running
+- Start Minikube with:
 ```
-minikube start
+minikube start --driver=docker
 ```
 
 Verify that everything is OK with:
 ```
 minikube status
 ```
+
+- Ensure that Hyper-V is enabled on Windows for Kubernetes with the command `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All` in Powershell (right click Powershell icon and open as administrator)
+- The powershell command `Set-Alias -Name minikube -Value C:\path\to\minikube-windows-amd64.exe` maybe helpful
 
 ## 2. Learn to use `kubectl` commands
 
