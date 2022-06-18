@@ -12,12 +12,12 @@ Container orchestration with Kubernetes
 5. Run a multiple pod application in Kubernetes
 6. Deploy an app using Manifest yaml files
 
-## 1. Install Minikube
+## 1. Install **BETA VERSION** of Minikube
 
-[Install Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) following the instructions depending on your OS.
+[Install Minikube](https://minikube.sigs.k8s.io/docs/start/) following the instructions depending on your OS. There is a useful bugfix in the BETA version so please choose that.
 
 - Ensure Hyper-V is enabled on Windows with Powershell command `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All` (right click powershell icon and select 'run as administrator' from the launch options)
-- Ensure Docker is running
+- Set hyperv as your minikube container runtime with `minikube config set driver hyperv`
 - Start Minikube with:
 ```
 minikube start --driver=docker
@@ -27,9 +27,6 @@ Verify that everything is OK with:
 ```
 minikube status
 ```
-
-- Ensure that Hyper-V is enabled on Windows for Kubernetes with the command `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All` in Powershell (right click Powershell icon and open as administrator)
-- The powershell command `Set-Alias -Name minikube -Value C:\path\to\minikube-windows-amd64.exe` maybe helpful
 
 ## 2. Learn to use `kubectl` commands
 
@@ -59,7 +56,7 @@ minikube status
    
 6. Open a shell inside the pod with:
    ```
-   kubectl exec -ti $POD_NAME bash
+   kubectl exec -ti $POD_NAME -- /bin/bash
    ```
    
 7. List the content of the directory you are in and try to find the JavaScript source code file
@@ -87,13 +84,13 @@ minikube status
    ```
    minikube ip
    ```
-4. Using the answers of questions 2 and 3, open your web browser and try to reach the web app.
+4. Using the answers of questions 2, 3 and 4, open your web browser and try to reach the web app.
 
-> **Note!** If you are using Docker driver in Minikube, you must create a tunnel to the cluster node (that is running as a Docker container). Run the command (replace `$SERVICE_NAME` with your service name):
+> **Note!** If you are using Docker driver in Minikube, you can also create a tunnel to the cluster node (that is running as a Docker container). Run the following command (replace `$SERVICE_NAME` with your service name) but don't be concerned if it doesn't work. Port forwarding is fine:
 
-```
-minikube service $SERVICE_NAME
-```
+   ```
+   minikube service $SERVICE_NAME
+   ```
 
 ## 4. Learn to scale up and down a Kubernetes deployment
 
