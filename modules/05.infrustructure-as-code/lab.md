@@ -181,7 +181,8 @@ If you need to change something in our installation, you have to modify your pla
 1. Update the playbooks on the VM using `vagrant upload`:
 
 ```bash
-vagrant upload playbooks /vagrant/playbooks gitlab_server
+vagrant upload playbooks /vagrant/playbooks flask_app
+(vagrant upload playbooks /vagrant/playbooks flask_app) -and (vagrant provision)
 ```
 
 2. Rerun provisioning with the command:

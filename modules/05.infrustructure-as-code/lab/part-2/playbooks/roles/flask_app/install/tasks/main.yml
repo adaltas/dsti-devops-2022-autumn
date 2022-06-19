@@ -1,0 +1,77 @@
+---
+- name: Install required packages
+  yum:
+    name:
+      - python3
+      - python3-pip
+      - lsof
+    state: latest
+
+- name: Pip install flask
+  command: pip3 install flask
+
+- name: Creating flaskapp directory
+  file:
+    path: "/flaskapp"
+    state: directory
+    mode: '0777'
+
+- name: Creating a file with content
+  copy:
+    dest: "/flaskapp/app.py"
+    content: |
+      from flask import Flask
+
+      app = Flask(__name__)
+
+      @app.route("/home")
+      def home():
+          return "<h1>Home...</h1>"
+
+      @app.route("/health")
+      def health():
+          return "<h1>Healthy</h1>"
+
+      if __name__ == "__main__":
+          app.run(host="0.0.0.0", port=5000, debug=True)
+
+- name: Kill process running on 5000
+  shell: kill -9 `lsof -i :5000 | awk '{print $2}' | grep -v PID | xargs`
+  failed_when: no
+
+
+- name: Enable HTTP+HTTPS access
+  firewalld:
+    # This is how we use a variable
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  # The module will be run for each item
+  with_items:
+    - http
+    - https
+
+- name: Reload firewalld
+  service:
+    name: firewalld
+    state: reloaded
+
+- name: Enable and start sshd
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+
+- name: start flask
+  vars:
+    FLASK_APP: /flaskapp/app.py
+    FLASK_ENV: development
+  command: python3 -m flask run
+  args:
+    chdir: /flaskapp
+
+
+# cd /flaskapp/
+# export FLASK_APP='/flaskapp/app.py'
+# export FLASK_ENV='development'
+# python3 -m flask run
