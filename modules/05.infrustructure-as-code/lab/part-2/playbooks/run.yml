@@ -1,11 +1,11 @@
 ---
-- hosts: gitlab_server
+- hosts: all
   # Run commands as root
   become: true
   # Roles to be executed on these hosts
   roles:
-  - role: gitlab/install
+  - role: flask_app/install
     tags: install
 
-  - role: gitlab/healthchecks
+  - role: flask_app/healthchecks
     tags: check

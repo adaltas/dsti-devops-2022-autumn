@@ -1,0 +1,18 @@
+from flask import Flask
+import random
+
+app = Flask(__name__)
+
+@app.route("/home")
+def home():
+    return "<h1>Welcome to your Flask app!</h1>"
+
+@app.route("/health")
+def health():
+    if random.randint(1,10) == 6:
+        return "<h1>Not healthy</h1>"
+    else:
+        return "<h1>Healthy</h1>"
+
+if __name__ == "__main__":
+    app.run()

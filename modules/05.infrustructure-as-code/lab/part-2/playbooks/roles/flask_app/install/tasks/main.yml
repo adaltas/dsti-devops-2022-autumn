@@ -1,0 +1,37 @@
+---
+- name: Install python3
+  shell: |
+    yum install -y https://repo.ius.io/ius-release-el$(rpm -E '%{rhel}').rpm
+    yum update -y
+    yum install -y python3
+    yum install -y python3-pip
+
+- name: pip install flask
+  pip:
+    name: flask
+    executable: pip3
+
+- name: Creating flaskapp directory
+  file:
+    path: "/flaskapp"
+    state: directory
+    mode: '0777'
+
+- name: Template /flaskapp/app.py
+  template:
+    src: app.py.j2
+    dest: /flaskapp/app.py
+    backup: yes
+
+- name: Template /flaskapp/start-flask-app.sh
+  vars:
+    FLASK_APP: /flaskapp/app.py
+    FLASK_ENV: development
+  template:
+    src: start-flask-app.sh.j2
+    dest: /flaskapp/start-flask-app.sh
+    mode: 0755
+    backup: yes
+
+- name: Start flask app in the background
+  command: sh /flaskapp/start-flask-app.sh
