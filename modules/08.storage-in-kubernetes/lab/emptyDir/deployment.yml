@@ -14,13 +14,18 @@ spec:
       labels:
         app: nginx-empty-dir
     spec:
-      volumes:
-        # TODO complete
+        # END
       containers:
       - name: nginx-container
         image: nginx
+        volumeMounts: 
+        - name: nginx-storage
+          mountPath: /usr/share/nginx/html
         ports:
           - containerPort: 80
             name: "http-server"
-        volumeMounts:
+      volumes:
+      - name: nginx-storage
+        emptyDir: {}
           # TODO complete
+          # END
