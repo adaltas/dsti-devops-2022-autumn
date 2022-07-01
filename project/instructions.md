@@ -2,7 +2,7 @@
 
 ## Deadline
 
-31/Jul/2022
+31/Aug/2022
 
 ## Opportunities
 
